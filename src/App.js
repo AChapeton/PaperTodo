@@ -19,10 +19,21 @@ function App() {
     console.log('Complete');
   };
 
+  const onAddTodo = (todo) => {
+    // console.log(`New todo`);
+    // console.log(todo);
+    setTodos([todo, ...todos]);
+    console.log(todos);
+  };
+
+  const onDeleteTodo = () => {
+    console.log('Todo was deleted');
+  };
+
   return (
     <div className="App">
       <Header />
-      <NewTodo />
+      <NewTodo onSubmit={onAddTodo} />
       <br />
       <TodoList>
         {todos.map((todo) => (
