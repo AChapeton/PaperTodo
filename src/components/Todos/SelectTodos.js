@@ -5,9 +5,9 @@ function SelectTodos() {
   return (
     <>
       <select>
-        <option value="All"></option>
-        <option value="Active"></option>
-        <option value="Complete"></option>
+        <option value="All">All</option>
+        <option value="Active">Active</option>
+        <option value="Complete">Complete</option>
       </select>
     </>
   );
