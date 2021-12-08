@@ -14,7 +14,7 @@ function NewTodo({ onSubmit }) {
       complete: false,
     };
     onSubmit(newTodo);
-
+    inputTodo.current.value = '';
     // console.log(inputTodo.current.value);
   };
 
