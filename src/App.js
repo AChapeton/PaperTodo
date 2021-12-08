@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Header from './components/Layout/Header';
 import NewTodo from './components/Todos/NewTodo';
@@ -14,6 +14,8 @@ function App() {
   ];
 
   const [todos, setTodos] = useState(DEFAULT_TODOS);
+  const [selectedTodos, setSelectedTodos] = useState('all');
+  const [filteredTodos, setFilteredTodos] = useState(todos);
 
   const onHandlerComplete = (id) => {
     // console.log(id);
@@ -34,9 +36,30 @@ function App() {
     // console.log(todos);
   };
 
-  const onDeleteTodo = () => {
-    console.log('Todo was deleted');
+  // const onDeleteTodo = () => {
+  //   console.log('Todo was deleted');
+  // };
+
+  const onSelectTodos = (e) => {
+    console.log(e.target.value)
+    setSelectedTodos(e.target.value);
   };
+  
+  useEffect(() => {
+
+    if(selectedTodos === "all"){
+      setFilteredTodos(todos);
+    }
+
+    if(selectedTodos === "active"){
+      setFilteredTodos(todos.filter(todo => todo.complete === false));
+    }
+
+    if(selectedTodos === "complete"){
+      setFilteredTodos(todos.filter(todo => todo.complete === true));
+    }
+
+  }, [selectedTodos])
 
   return (
     <div className="App">
@@ -44,7 +67,7 @@ function App() {
       <NewTodo onSubmit={onAddTodo} />
       <br />
       <TodoList>
-        {todos.map((todo) => (
+        {filteredTodos.map((todo) => (
           <TodoItem
             key={todo.id}
             text={todo.text}
@@ -53,7 +76,7 @@ function App() {
           />
         ))}
       </TodoList>
-      <SelectTodos />
+      <SelectTodos onSelect={onSelectTodos} />
     </div>
   );
 }
