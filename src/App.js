@@ -15,15 +15,23 @@ function App() {
 
   const [todos, setTodos] = useState(DEFAULT_TODOS);
 
-  const onHandlerComplete = () => {
-    console.log('Complete');
+  const onHandlerComplete = (id) => {
+    // console.log(id);
+    let updatedTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, complete: !todo.complete };
+      }
+      return todo;
+    });
+    // console.log(updatedTodos);
+    setTodos([...updatedTodos]);
   };
 
   const onAddTodo = (todo) => {
     // console.log(`New todo`);
     // console.log(todo);
     setTodos([todo, ...todos]);
-    console.log(todos);
+    // console.log(todos);
   };
 
   const onDeleteTodo = () => {
@@ -41,7 +49,7 @@ function App() {
             key={todo.id}
             text={todo.text}
             complete={todo.complete}
-            isComplete={onHandlerComplete}
+            isComplete={() => onHandlerComplete(todo.id)}
           />
         ))}
       </TodoList>
