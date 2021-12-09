@@ -1,0 +1,10 @@
+.add-todo{
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-todo input{
+  width: 80%;
+  height: 25px;
+  
+}

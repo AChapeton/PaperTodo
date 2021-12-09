@@ -20,7 +20,7 @@ function NewTodo({ onSubmit }) {
 
   return (
     <>
-      <form onSubmit={onHandlerSubmit}>
+      <form className={classes["add-todo"]} onSubmit={onHandlerSubmit}>
         <Input refValue={inputTodo} type={'text'} placeholder={'New Todo'} />
         <Button type={'submit'} text={'Add'} />
       </form>
